@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import API from "./utils/api";
+import React, { useEffect, useState } from "react";
+import API from "../utils/api";
 
 const Protected = () => {
     const [message, setMessage] = useState("");
@@ -9,14 +9,19 @@ const Protected = () => {
             try {
                 const response = await API.get("/protected");
                 setMessage(response.data.message);
-            }catch (err) {
+            } catch (err) {
                 console.error(err);
+                setMessage("Acceso denegado. Inicia sesión.");
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 1200);
             }
         };
+
         fetchData();
     }, []);
 
-    return <h1>{message}</h1>
+    return <h1>{message}</h1>;
 };
 
 export default Protected;

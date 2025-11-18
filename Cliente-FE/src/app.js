@@ -1,17 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./Login";
-import Protected from "./Protected";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const App = () => (
-  <Router>
-    <Routes>
-      {/* Redirige "/" a "/login" */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/protected" element={<Protected />} />
-    </Routes>
-  </Router>
-);
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Protected from "./pages/Protected";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/protected" element={<Protected />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
 
 export default App;
